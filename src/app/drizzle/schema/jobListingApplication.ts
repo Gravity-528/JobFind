@@ -1,4 +1,5 @@
 import { pgTable,uuid,varchar,integer,primaryKey,text } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 import { JobListingTable } from "./jobListing";
 import { createdAt, updatedAt } from "../schemaHelpers";
 import { userTable } from "./user";
@@ -18,4 +19,13 @@ export const jobListingApplicationTable=pgTable("job_listing_application",{
 },
 table => [primaryKey({columns:[table.jobListingId,table.userId]})])
 
-
+export const jobListingApplicationReferences=relations(jobListingApplicationTable, ({ one }) => ({
+    jobListing: one(JobListingTable, {
+        fields: [jobListingApplicationTable.jobListingId],
+        references: [JobListingTable.id]
+    }),
+    user: one(userTable, {
+        fields: [jobListingApplicationTable.userId],
+        references: [userTable.id]
+    })
+}));
