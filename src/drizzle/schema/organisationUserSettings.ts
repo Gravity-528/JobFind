@@ -1,27 +1,27 @@
 import { pgTable,varchar,boolean,integer, primaryKey } from "drizzle-orm/pg-core";
 import { userTable } from "./user";
-import { OrganisationTable } from "./organisation";
+import { organizationTable } from "./organization";
 import { createdAt, updatedAt } from "../schemaHelpers";
 import { relations } from "drizzle-orm/relations";
 
-export const OrganisationUserSettingsTable=pgTable("organisation_user_settings", {
+export const organizationUserSettingsTable=pgTable("organization_user_settings", {
     userId:varchar().notNull().references(() => userTable.id),
-    organisationId: varchar().notNull().references(() => OrganisationTable.id),
+    organizationId: varchar().notNull().references(() => organizationTable.id),
     newApplicationEmailNotification: boolean().notNull().default(false),
     minimumRating:integer(),
     createdAt,
     updatedAt
 },
- table => [primaryKey({columns:[table.userId,table.organisationId]})]
+ table => [primaryKey({columns:[table.userId,table.organizationId]})]
 );
 
-export const organisationUserSettingsRelations = relations(OrganisationUserSettingsTable, ({ one }) => ({
+export const organizationUserSettingsRelations = relations(organizationUserSettingsTable, ({ one }) => ({
     user: one(userTable, {
-        fields: [OrganisationUserSettingsTable.userId],
+        fields: [organizationUserSettingsTable.userId],
         references: [userTable.id]
     }),
-    organisation: one(OrganisationTable, {
-        fields: [OrganisationUserSettingsTable.organisationId],
-        references: [OrganisationTable.id]
+    organization: one(organizationTable, {
+        fields: [organizationUserSettingsTable.organizationId],
+        references: [organizationTable.id]
     })
 }));

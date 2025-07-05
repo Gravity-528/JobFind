@@ -2,9 +2,9 @@ import { pgTable,varchar } from "drizzle-orm/pg-core";
 import { createdAt,updatedAt } from "../schemaHelpers";
 import { relations } from "drizzle-orm/relations";
 import { JobListingTable } from "./jobListing";
-import { OrganisationUserSettingsTable } from "./organisationUserSettings";
+import { organizationUserSettingsTable } from "./organisationUserSettings";
 
-export const OrganisationTable=pgTable("organisations",{
+export const organizationTable=pgTable("organizations",{
     id: varchar().primaryKey(),
     name: varchar().notNull(),
     imageUrl: varchar(),
@@ -12,7 +12,7 @@ export const OrganisationTable=pgTable("organisations",{
     updatedAt
 })
 
-export const organisationRelations = relations(OrganisationTable, ({ many }) => ({
+export const organizationRelations = relations(organizationTable, ({ many }) => ({
     jobListings: many(JobListingTable),
-    OrganisationUserSettings: many(OrganisationUserSettingsTable)
+    organizationUserSettings: many(organizationUserSettingsTable)
 }));
