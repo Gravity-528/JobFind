@@ -1,22 +1,22 @@
 import { Suspense } from "react"
 // import { SidebarUserButtonClient } from "./_SidebarorganizationButtonClient"
-import { SidebarorganizationButtonClient } from "./_SidebarOrganisationButtonClient"
+import { SidebarOrganizationButtonClient } from "./_SidebarOrganisationButtonClient"
 import { SignOutButton } from "@/services/clerk/components/AuthButton"
 import { SidebarMenuButton } from "@/components/ui/sidebar"
 import { LogOutIcon } from "lucide-react"
 import { auth } from "@clerk/nextjs/server"
-import { getCurrentorganization, getCurrentUser } from "@/services/clerk/lib/getCurrentAuth"
+import { getCurrentOrganization, getCurrentUser } from "@/services/clerk/lib/getCurrentAuth"
 
-export function SidebarorganizationButton() {
+export function SidebarOrganizationButton() {
   return (
     <Suspense>
-      <SidebarorganizationSuspense />
+      <SidebarOrganizationSuspense />
     </Suspense>
   )
 }
 
-async function SidebarorganizationSuspense(){
-    const [{user},{organization}]=await Promise.all([ getCurrentUser({allData:true}),getCurrentorganization({allData:true})])
+async function SidebarOrganizationSuspense(){
+    const [{user},{organization}]=await Promise.all([ getCurrentUser({allData:true}),getCurrentOrganization({allData:true})])
     
     if(user==null || organization==null){
         return (
@@ -31,6 +31,6 @@ async function SidebarorganizationSuspense(){
     }
 
     return(
-        <SidebarorganizationButtonClient user={user} organization={organization}/>
+        <SidebarOrganizationButtonClient user={user} organization={organization}/>
     )
 }

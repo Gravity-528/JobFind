@@ -7,8 +7,8 @@ import { SignedIn, SignedOut } from "@/services/clerk/components/SignedInStatus"
 import { ReactNode, Suspense } from "react";
 import { SidebarUserButton } from "@/features/users/components/SidebarUserButton";
 import { SidebarNavMenuGroup } from "@/components/sidebar/SidebarNavMenu";
-import { SidebarorganizationButton } from "@/features/organisations/components/SidebarOrganisationButton";
-import { getCurrentorganization } from "@/services/clerk/lib/getCurrentAuth";
+import { SidebarOrganizationButton } from "@/features/organisations/components/SidebarOrganisationButton";
+import { getCurrentOrganization } from "@/services/clerk/lib/getCurrentAuth";
 import { redirect } from "next/navigation";
 
 export default function EmployerLayout({children}:{children:ReactNode}){
@@ -19,7 +19,7 @@ export default function EmployerLayout({children}:{children:ReactNode}){
 
 
 async function LayoutSuspense({children}:{children:ReactNode}){
-    const {orgId}=await getCurrentorganization()
+    const {orgId}=await getCurrentOrganization()
     if(orgId==null) return redirect("/organizations/select")
     return(<AppSlidebar
             content={
@@ -57,7 +57,7 @@ async function LayoutSuspense({children}:{children:ReactNode}){
               />
             </>
           }
-          footerButton={<SidebarorganizationButton />}
+          footerButton={<SidebarOrganizationButton />}
         >
           {children}
         </AppSlidebar>

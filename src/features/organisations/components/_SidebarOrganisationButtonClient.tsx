@@ -16,7 +16,7 @@ type organization={
     imageUrl:string | null
 }
 
-export function SidebarorganizationButtonClient({user,organization}:{
+export function SidebarOrganizationButtonClient({user,organization}:{
     user:{
         email:string
     }

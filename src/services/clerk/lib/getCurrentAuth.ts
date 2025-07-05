@@ -14,12 +14,12 @@ export async function getCurrentUser({ allData = false }= {}) {
     }
 }
 
-export async function getCurrentorganization({ allData = false }= {}) {
+export async function getCurrentOrganization({ allData = false }= {}) {
 	const {orgId} =await auth()
 
     return{
         orgId,
-        organization:allData && orgId != null ? await getorganization(orgId): undefined
+        organization:allData && orgId != null ? await getOrganization(orgId): undefined
     }
 }
 
@@ -29,7 +29,7 @@ async function getUser(id: string) {
     })
 }
 
-async function getorganization(id:string){
+async function getOrganization(id:string){
     return db.query.organizationTable.findFirst({
         where: eq(organizationTable.id, id)
     })
