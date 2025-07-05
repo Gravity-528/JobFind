@@ -36,6 +36,7 @@ export default function HomePage(){
               </SidebarMenu>
           </SidebarGroup>
           </SidebarContent>
+          <SignedIn>
           <SidebarFooter>
               <SidebarMenu>
                 <SidebarMenuItem>
@@ -43,6 +44,7 @@ export default function HomePage(){
                 </SidebarMenuItem>
               </SidebarMenu>
             </SidebarFooter>
+          </SignedIn>
          </Sidebar>
          <main className="flex-1">abcdef</main>
          </AppSidebarClient>
