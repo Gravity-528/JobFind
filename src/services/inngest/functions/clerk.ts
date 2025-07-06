@@ -6,7 +6,7 @@ import { updatedAt } from "@/drizzle/schemaHelpers";
 import { InsertUser } from "@/db/user";
 import { insertUserNotificationSettings } from "@/db/userNotificationSettings";
 import { deleteUser, updateUser } from "@/db/user";
-import { deleteorganization, Insertorganization, updateorganization } from "@/db/organisation";
+import { deleteorganization, Insertorganization, updateorganization } from "@/db/organization";
 
 
 function verifyWebhook({raw,headers}:{raw:string,headers:Record<string,string>}){

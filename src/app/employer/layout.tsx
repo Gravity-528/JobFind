@@ -7,7 +7,7 @@ import { SignedIn, SignedOut } from "@/services/clerk/components/SignedInStatus"
 import { ReactNode, Suspense } from "react";
 import { SidebarUserButton } from "@/features/users/components/SidebarUserButton";
 import { SidebarNavMenuGroup } from "@/components/sidebar/SidebarNavMenu";
-import { SidebarOrganizationButton } from "@/features/organisations/components/SidebarOrganisationButton";
+import { SidebarOrganizationButton } from "@/features/organizations/components/SidebarOrganizationButton";
 import { getCurrentOrganization } from "@/services/clerk/lib/getCurrentAuth";
 import { redirect } from "next/navigation";
 

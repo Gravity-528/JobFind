@@ -3,7 +3,7 @@ import { createdAt,updatedAt } from "../schemaHelpers";
 import { relations } from "drizzle-orm/relations";
 import { UserNotificationSettingsTable } from "./userNotificationSettings";
 import { UserResumeTable } from "./userResume";
-import { organizationUserSettingsTable } from "./organisationUserSettings";
+import { organizationUserSettingsTable } from "./organizationUserSettings";
 
 export const userTable=pgTable("users",{
     id: varchar().primaryKey(),

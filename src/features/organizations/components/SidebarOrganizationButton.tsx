@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 // import { SidebarUserButtonClient } from "./_SidebarorganizationButtonClient"
-import { SidebarOrganizationButtonClient } from "./_SidebarOrganisationButtonClient"
+import { SidebarOrganizationButtonClient } from "./_SidebarOrganizationButtonClient"
 import { SignOutButton } from "@/services/clerk/components/AuthButton"
 import { SidebarMenuButton } from "@/components/ui/sidebar"
 import { LogOutIcon } from "lucide-react"

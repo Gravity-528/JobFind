@@ -11,7 +11,7 @@ export async function insertJobListing(
     .values(jobListing)
     .returning({
       id: JobListingTable.id,
-      organisationId: JobListingTable.organisationId,
+      organizationId: JobListingTable.organizationId,
     })
 
 //   revalidateJobListingCache(newListing)
@@ -29,7 +29,7 @@ export async function updateJobListing(
     .where(eq(JobListingTable.id, id))
     .returning({
       id: JobListingTable.id,
-      organisationId: JobListingTable.organisationId,
+      organizationId: JobListingTable.organizationId,
     })
 
 //   revalidateJobListingCache(updatedListing)

@@ -2,7 +2,7 @@ import { db } from "@/drizzle/db";
 import { auth } from "@clerk/nextjs/server";
 import {eq} from "drizzle-orm";
 import { userTable } from "@/drizzle/schema/user";
-import { organizationTable } from "@/drizzle/schema/organisation";
+import { organizationTable } from "@/drizzle/schema/organization";
 
 
 export async function getCurrentUser({ allData = false }= {}) {

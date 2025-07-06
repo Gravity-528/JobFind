@@ -1,6 +1,6 @@
 import { uuid, varchar,text, integer,pgEnum,boolean,timestamp ,index} from "drizzle-orm/pg-core";
 import { pgTable } from "drizzle-orm/pg-core";
-import { organizationTable } from "./organisation";
+import { organizationTable } from "./organization";
 import { createdAt, updatedAt } from "../schemaHelpers";
 import { or, relations } from "drizzle-orm";
 import { jobListingApplicationTable } from "../schema";
@@ -38,7 +38,7 @@ export const jobListingTypeEnum = pgEnum("job_listings_type", jobListingTypes)
 
 export const JobListingTable=pgTable("job_listing",{
    id: uuid().primaryKey().defaultRandom(),
-   organisationId:varchar().references(()=>organizationTable.id,{onDelete:"cascade"}).notNull(),
+   organizationId:varchar().references(()=>organizationTable.id,{onDelete:"cascade"}).notNull(),
    title:varchar().notNull(),
    description:text().notNull(),
    wage:integer(),
@@ -59,7 +59,7 @@ export const JobListingTable=pgTable("job_listing",{
 
 export const jobListingReferences=relations(JobListingTable, ({ one,many }) => ({
     organization: one(organizationTable,{
-        fields:[JobListingTable.organisationId],
+        fields:[JobListingTable.organizationId],
         references:[organizationTable.id]
     }),
     applications: many(jobListingApplicationTable),

@@ -1,6 +1,6 @@
 import { pgTable,varchar,boolean,integer, primaryKey } from "drizzle-orm/pg-core";
 import { userTable } from "./user";
-import { organizationTable } from "./organisation";
+import { organizationTable } from "./organization";
 import { createdAt, updatedAt } from "../schemaHelpers";
 import { relations } from "drizzle-orm/relations";
 
