@@ -1,6 +1,6 @@
 import { uuid, varchar,text, integer,pgEnum,boolean,timestamp ,index} from "drizzle-orm/pg-core";
 import { pgTable } from "drizzle-orm/pg-core";
-import { organizationTable } from "./organization";
+import { organizationTable } from "./organisation";
 import { createdAt, updatedAt } from "../schemaHelpers";
 import { or, relations } from "drizzle-orm";
 import { jobListingApplicationTable } from "../schema";
@@ -10,9 +10,35 @@ type WageInterval=typeof wageIntervals[number]
 
 export const wageIntervalEnum=pgEnum("job_listings_wage_interval",wageIntervals)
 
+export const locationRequirements = ["in-office", "hybrid", "remote"] as const
+export type LocationRequirement = (typeof locationRequirements)[number]
+export const locationRequirementEnum = pgEnum(
+  "job_listings_location_requirement",
+  locationRequirements
+)
+
+export const experienceLevels = ["junior", "mid-level", "senior"] as const
+export type ExperienceLevel = (typeof experienceLevels)[number]
+export const experienceLevelEnum = pgEnum(
+  "job_listings_experience_level",
+  experienceLevels
+)
+
+export const jobListingStatuses = ["draft", "published", "delisted"] as const
+export type JobListingStatus = (typeof jobListingStatuses)[number]
+export const jobListingStatusEnum = pgEnum(
+  "job_listings_status",
+  jobListingStatuses
+)
+
+export const jobListingTypes = ["internship", "part-time", "full-time"] as const
+export type JobListingType = (typeof jobListingTypes)[number]
+export const jobListingTypeEnum = pgEnum("job_listings_type", jobListingTypes)
+
+
 export const JobListingTable=pgTable("job_listing",{
    id: uuid().primaryKey().defaultRandom(),
-   organizationId:varchar().references(()=>organizationTable.id,{onDelete:"cascade"}).notNull(),
+   organisationId:varchar().references(()=>organizationTable.id,{onDelete:"cascade"}).notNull(),
    title:varchar().notNull(),
    description:text().notNull(),
    wage:integer(),
@@ -33,7 +59,7 @@ export const JobListingTable=pgTable("job_listing",{
 
 export const jobListingReferences=relations(JobListingTable, ({ one,many }) => ({
     organization: one(organizationTable,{
-        fields:[JobListingTable.organizationId],
+        fields:[JobListingTable.organisationId],
         references:[organizationTable.id]
     }),
     applications: many(jobListingApplicationTable),
